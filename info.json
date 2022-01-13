@@ -1,0 +1,12 @@
+{
+  "token": "điền token vào đây, ko xóa dấu nháy kép đi ",
+  "channel": "điền id channel vào đây, ko xóa dấu nháy kép đi",
+  "owner": "điền id owner vào đây, ko xóa dấu nháy kép đi",
+  "disable": {
+    "hunt": false,
+    "battle": false,
+    "owo": false,
+    "buy": true
+  },
+  "inv": [53, 54]
+}
