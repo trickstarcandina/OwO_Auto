@@ -98,7 +98,7 @@ try {
 
 > - Bước 3: Chạy file `start.bat`
 
-## Chạy mode continuous (hunt bot liên tục)
+## 2. Chạy mode continuous (hunt bot liên tục)
 
 > - Bước 1: Chạy lệnh `node clientContinuous.js` là được
 
