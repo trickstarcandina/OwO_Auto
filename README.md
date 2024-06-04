@@ -19,7 +19,7 @@
 
 > - 4. Gõ npm i, đợi cài đặt xong thì tắt
 
-## Chạy mode schedule (hunt bot theo giờ trong ngày)
+## Setup token & env
 
 > - Bước 1: Ctrl + Shift + I trên trình duyệt. Chọn Network -> Fetch/XHR -> Chọn 1 trường bất kỳ và tìm trong Request Headers
 
@@ -44,7 +44,9 @@
         4.2: List gem bạn muốn sử dụng. Ở đây sử dụng chung cùng 1 cấp gem.
             (Những số có thể điền trong list gem có thể điền là 51 52 53 54 55 56 57)
 
-> - Bước 5: Mở file `index.js`
+## 1. Chạy mode schedule (hunt bot theo giờ trong ngày)
+
+> - Bước 1: Mở file `index.js`
 
         Nếu muốn thêm nhiều nick thì bạn có thể làm thế này. Nhớ sửa .env thành
         CHANNE1L=...
@@ -79,7 +81,7 @@ try {
 }
 ```
 
-> - Bước 6: Mở file `clientSchedule.js`
+> - Bước 2: Mở file `clientSchedule.js`
 
         Dòng 12 và Dòng 160 -> 167 config giờ hunt bot theo khung giờ 24h
         ```
@@ -94,7 +96,11 @@ try {
         ...
         ```
 
-> - Bước 7: Chạy file `start.bat`
+> - Bước 3: Chạy file `start.bat`
+
+## Chạy mode continuous (hunt bot liên tục)
+
+> - Bước 1: Chạy lệnh `node clientContinuous.js` là được
 
 #### Khi bị dính captcha bot sẽ tự dừng auto lại và acc spam gửi captcha về tin nhắn riêng của owner, tại acc owner bạn trả lời tin nhắn vừa được acc spam gửi hoặc có thể login vào acc spam trả lời captcha.
 
