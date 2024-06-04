@@ -19,7 +19,7 @@
 
 > - 4. Gõ npm i, đợi cài đặt xong thì tắt
 
-# OwO Version 1
+## Setup token & env
 
 > - Bước 1: Ctrl + Shift + I trên trình duyệt. Chọn Network -> Fetch/XHR -> Chọn 1 trường bất kỳ và tìm trong Request Headers
 
@@ -28,32 +28,85 @@
 
 > - Bước 2: Lấy TOKEN của user muốn auto (để đảm bảo an toàn sau khi lấy token KHÔNG share Token cho người khác)
 
-> - Bước 3: Điền thông tin vào `info.json`
+> - Bước 3: Tạo 1 file là `.env` tương tự envSample
 
-        3.1: Điền Token acc spam
-        3.2: Điền ID kênh spam
-        3.3: Điền ID owner (acc bạn gửi noti khi có captcha)
-        3.4: Bật tắt các lệnh muốn spam, với false là bật, true là tắt
-        3.5: List gem bạn muốn sử dụng. Ở đây sử dụng chung cùng 1 cấp gem.
-            (Những số có thể điền trong list gem có thể điền là 51 52 53 54 55 56 57)
-
+        3.1: Điền Token acc spam (TOKEN=...)
+        3.2: Điền ID kênh spam (CHANNEL=...)
+        3.3: Điền ID owner (acc bạn gửi noti khi có captcha) (OWNER=...)
+        
     TH1 : Chỉ dùng 1 acc để auto và acc đó là owner thì điền ID là acc đó luôn vào chỗ "owner".
     TH2 : Có 2 acc :  1 acc spam và 1 acc owner để bắn noti thì điền "owner" là ID của acc owner.
     > Ưu tiên cách 2 hơn vì nó bắn noti trên PC sẽ biết lúc nào dính captcha để mình còn xử lý.
 
-> - Bước 4: Chạy file `start.bat`
+> - Bước 4: Điền thông tin vào `info.json`
+
+        4.1: Bật tắt các lệnh muốn spam, với false là bật, true là tắt
+        4.2: List gem bạn muốn sử dụng. Ở đây sử dụng chung cùng 1 cấp gem.
+            (Những số có thể điền trong list gem có thể điền là 51 52 53 54 55 56 57)
+
+## 1. Chạy mode schedule (hunt bot theo giờ trong ngày)
+
+> - Bước 1: Mở file `index.js`
+
+        Nếu muốn thêm nhiều nick thì bạn có thể làm thế này. Nhớ sửa .env thành
+        CHANNE1L=...
+        OWNER1=...
+        TOKEN1=...
+        CHANNEL2=...
+        OWNER2=...
+        TOKEN2=...
+
+```
+try {
+    runClient(
+        process.env.CHANNEL1,
+        process.env.OWNER1,
+        process.env.TOKEN1,
+        new Client({
+            checkUpdate: false,
+        })
+    );
+    runClient(
+        process.env.CHANNEL2,
+        process.env.OWNER2,
+        process.env.TOKEN2,
+        new Client({
+            checkUpdate: false,
+        })
+    );
+    // ... etc account
+
+} catch (error) {
+    console.log(error);
+}
+```
+
+> - Bước 2: Mở file `clientSchedule.js`
+
+        Dòng 12 và Dòng 160 -> 167 config giờ hunt bot theo khung giờ 24h
+        ```
+        wakeUpRule.hour = [1, 4, 7, 10, 12, 15];
+        ...
+        hour === 1 ||
+        hour === 4 ||
+        hour === 7 ||
+        hour === 10 ||
+        hour === 12 ||
+        hour === 15
+        ...
+        ```
+
+> - Bước 3: Chạy file `start.bat`
+
+## Chạy mode continuous (hunt bot liên tục)
+
+> - Bước 1: Chạy lệnh `node clientContinuous.js` là được
+
+------------------------------------------------------------------------------
 
 #### Khi bị dính captcha bot sẽ tự dừng auto lại và acc spam gửi captcha về tin nhắn riêng của owner, tại acc owner bạn trả lời tin nhắn vừa được acc spam gửi hoặc có thể login vào acc spam trả lời captcha.
 
-### Commands:
+## Commands:
 
 `spy!stop` để dừng lại <br>
 `spy!cont` để tiếp tục
-
-# OwO Version 2
-
-Version này config giống version trước nhưng khác ở chỗ là version này spam theo giờ cố định bạn đặt từ trước, ngoài thời gian đó sẽ không spam.
-Nó có lợi trong trường hợp bạn có thể bật máy cả ngày và không có muốn ngồi canh captcha, tất nhiên là cũng sẽ có lúc bot sẽ gửi captcha, việc ngắt thời gian chỉ giảm thiểu chứ không tránh được.
-
-> - Bạn copy trong thư mục 'version_new' file 'index2.js' ra ngoài thư mục OwO
-> - Đổi tên 'index.js' thành 1 tên khác, đổi tên 'index2.js' thành 'index.js'
