@@ -102,6 +102,11 @@ try {
 
 > - Bước 1: Chạy lệnh `node clientContinuous.js` là được
 
+    hoặc bạn có thể sửa `start.bat`. 
+```
+index.js -> clientContinuous.js
+```
+
 ------------------------------------------------------------------------------
 
 #### Khi bị dính captcha bot sẽ tự dừng auto lại và acc spam gửi captcha về tin nhắn riêng của owner, tại acc owner bạn trả lời tin nhắn vừa được acc spam gửi hoặc có thể login vào acc spam trả lời captcha.
