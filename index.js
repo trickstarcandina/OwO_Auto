@@ -1,6 +1,7 @@
 require("dotenv").config({ path: "./.env" });
 const { Client } = require("discord.js-selfbot-v13");
-const { runClient } = require("./clientSchedule");
+// const { runClient } = require("./clientSchedule");
+const { runClient } = require("./clientContinuous");
 
 try {
     runClient(
