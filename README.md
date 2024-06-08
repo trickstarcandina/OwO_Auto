@@ -65,6 +65,7 @@ console.log(`%cYou now have your token in the clipboard!`, 'font-size: 16px');
     > - TH2 : Có 2 acc :  1 acc spam và 1 acc owner để bắn noti thì điền "owner" là ID của acc owner.
 
     > Ưu tiên cách 2 hơn vì nó bắn noti trên PC sẽ biết lúc nào dính captcha để mình còn xử lý.
+    > Khi bị dính captcha bot sẽ tự dừng auto lại và acc spam gửi captcha về tin nhắn riêng của owner, tại acc owner bạn trả lời tin nhắn vừa được acc spam gửi hoặc có thể login vào acc spam trả lời captcha.
 
 - Bước 4: Điền thông tin vào `info.json`
 
@@ -72,9 +73,7 @@ console.log(`%cYou now have your token in the clipboard!`, 'font-size: 16px');
         4.2: List gem bạn muốn sử dụng. Ở đây sử dụng chung cùng 1 cấp gem.
             (Những số có thể điền trong list gem có thể điền là 51 52 53 54 55 56 57)
 
-## 1. Chạy mode schedule (hunt bot theo giờ trong ngày)
-
-- Bước 1: Mở file `index.js` và `.env`
+- Bước 5: Config thêm nếu bạn muốn chạy nhiều acc
 
 Nếu muốn thêm nhiều nick thì bạn có thể làm thế này. 
 Nhớ sửa .env thành
@@ -89,7 +88,7 @@ TOKEN2=...
 
 ```
 try {
-    runClient(
+    runClient...(
         process.env.CHANNEL1,
         process.env.OWNER1,
         process.env.TOKEN1,
@@ -97,7 +96,7 @@ try {
             checkUpdate: false,
         })
     );
-    runClient(
+    runClient...(
         process.env.CHANNEL2,
         process.env.OWNER2,
         process.env.TOKEN2,
@@ -112,9 +111,11 @@ try {
 }
 ```
 
-- Bước 2: Mở file `clientSchedule.js`
+- Bước 6: Chạy file `start.bat`. Sau đó chọn mode bạn muốn chạy (có 2 mode). Khi nào không chạy nữa thì tắt cửa sổ đi là được.
 
-Dòng 12 và Dòng 160 -> 167 config giờ hunt bot theo khung giờ 24h
+### 1. Chạy mode schedule (hunt bot theo giờ trong ngày)
+
+Mở file `clientSchedule.js`. Dòng 12 và Dòng 164 -> 169 config giờ hunt bot theo khung giờ 24h
 ```
 wakeUpRule.hour = [1, 4, 7, 10, 12, 15];
 ...
@@ -127,24 +128,9 @@ hour === 15
 ...
 ```
 
-- Bước 3: Chạy file `start.bat`
+### 2. Chạy mode continuous (hunt bot liên tục)
 
-## 2. Chạy mode continuous (hunt bot liên tục)
-
-- Bước 1: Chạy lệnh `node clientContinuous.js` là được
-
-    hoặc bạn có thể sửa `start.bat`. 
-```
-index.js -> clientContinuous.js
-```
-
-... todo -> chạy nhiều acc mode hunt liên tục
-
-------------------------------------------------------------------------------
-
-#### Khi bị dính captcha bot sẽ tự dừng auto lại và acc spam gửi captcha về tin nhắn riêng của owner, tại acc owner bạn trả lời tin nhắn vừa được acc spam gửi hoặc có thể login vào acc spam trả lời captcha.
-
-## 3. Commands:
+# Commands start - stop:
 
 `spy!stop` để dừng lại <br>
 `spy!cont` để tiếp tục
