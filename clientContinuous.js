@@ -1,7 +1,7 @@
 const data = require("./info.json");
 const { scheduleJob, Job, RecurrenceRule } = require("node-schedule");
 
-exports.runClient = (channel, owner, token, client) => {
+exports.runClientContinuous = (channel, owner, token, client) => {
   try {
     const huntBattleRule = new RecurrenceRule();
     huntBattleRule.second = [12, 43];
@@ -33,7 +33,7 @@ exports.runClient = (channel, owner, token, client) => {
     });
 
     client.on("messageCreate", async (message) => {
-      if (message.author.id !== "749916479507398683") return;
+      if (message.author.id !== "408785106942164992") return;
       if (message.channel.id !== channel && message.channel.guild) return;
       if (
         ["spent 5", "and caught an"].some((phrase) =>
@@ -65,7 +65,7 @@ exports.runClient = (channel, owner, token, client) => {
     });
 
     client.on("messageCreate", async (message) => {
-      if (message.author.id !== "749916479507398683") return;
+      if (message.author.id !== "408785106942164992") return;
       if (message.channel.id !== channel && message.channel.guild) return;
       // if captcha
       if (
@@ -106,7 +106,7 @@ exports.runClient = (channel, owner, token, client) => {
     client.on("messageCreate", async (message) => {
       // send message captcha after resolve from owner to bot
       if (message.author.id === owner && !message.channel.guild && message.content) {
-        client.users.cache.get("749916479507398683").send(message.content);
+        client.users.cache.get("408785106942164992").send(message.content);
       }
       if (message.channel.id === channel && message.author.id === owner) {
         if (message.content.toLowerCase() === "spy!stop") {
