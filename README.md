@@ -115,17 +115,11 @@ try {
 
 ### 1. Chạy mode schedule (hunt bot theo giờ trong ngày)
 
-Mở file `clientSchedule.js`. Dòng 12 và Dòng 164 -> 169 config giờ hunt bot theo khung giờ 24h
+Mở file `info.json`
 ```
-wakeUpRule.hour = [1, 4, 7, 10, 12, 15];
-...
-hour === 1 ||
-hour === 4 ||
-hour === 7 ||
-hour === 10 ||
-hour === 12 ||
-hour === 15
-...
+"timeSchedule": [1, 4, 7, 10, 12, 15]
+
+Chỉnh sửa thời gian bạn muốn spam. Ví dự ở trên là hunt theo 1h, 4h, ... 15h Local Time Zone máy của bạn
 ```
 
 ### 2. Chạy mode continuous (hunt bot liên tục)
