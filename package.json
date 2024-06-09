@@ -9,9 +9,8 @@
   "author": "Trickstar",
   "license": "MIT",
   "dependencies": {
-    "discord.js-selfbot-v13": "^2.15.0",
+    "discord.js-selfbot-v13": "^3.1.3",
     "dotenv": "^16.3.1",
-    "node-schedule": "^2.1.1",
-    "wio.db": "^4.0.22"
+    "node-schedule": "^2.1.1"
   }
 }
