@@ -9,8 +9,8 @@ exports.runClientSchedule = (channel, owner, token, client) => {
     owoRule.second = [42];
 
     const wakeUpRule = new RecurrenceRule();
-    wakeUpRule.hour = [1, 4, 7, 10, 12, 15];
-    wakeUpRule.minute = [12];
+    wakeUpRule.hour = data.timeSchedule;
+    wakeUpRule.minute = [2];
     wakeUpRule.second = [0];
     /**
      * @type { Job }
@@ -109,7 +109,7 @@ exports.runClientSchedule = (channel, owner, token, client) => {
           if (!!message.attachments.size && message.attachments.values().next()?.value?.url) {
             client.users.cache.get(owner).send(message.attachments.values().next().value.url);
           }
-        } 
+        }
         // else if (
         //   message.embeds[0] !== undefined ||
         //   message.content.includes("gained")
@@ -158,19 +158,7 @@ exports.runClientSchedule = (channel, owner, token, client) => {
 
     function checkTimeSpam() {
       const d = new Date();
-      let hour = d.getHours();
-      // [1, 4, 7, 10, 12, 15];
-      if (
-        hour === 1 ||
-        hour === 4 ||
-        hour === 7 ||
-        hour === 10 ||
-        hour === 12 ||
-        hour === 15
-      ) {
-        return 1;
-      }
-      return 0;
+      return data.timeSchedule.includes(d.getHours());
     }
   } catch (e) {
     console.log(e);
